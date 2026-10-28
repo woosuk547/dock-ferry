@@ -16,6 +16,10 @@
   .sub { color: var(--sub); }
   .top { display: flex; gap: 16px; align-items: center; }
   .top img { width: 88px; height: 88px; border-radius: 20px; }
+  /* 애플 규정: 배지 높이 40px 이상, 둘레 여백은 높이의 1/4 이상, 모양 변형 금지 */
+  .store { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 10px; }
+  .store a { display: inline-block; padding: 12px 12px 12px 0; }
+  .top .store img { width: auto; height: 48px; border-radius: 0; display: block; }
   .layout { display: grid; grid-template-columns: 260px 1fr; gap: 28px; }
   .facts { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; align-self: start; }
   .facts dt { font-weight: 600; margin-top: 8px; }
@@ -36,6 +40,7 @@
   <div>
     <h1>Dock Ferry: Color Sort Puzzle</h1>
     <div class="sub">Press kit · Little Tide Games</div>
+    <div class="store"><a href="https://apps.apple.com/app/id6819957171"><img src="img/app-store-badge.svg" alt="Download on the App Store"></a><span class="sub">Android: coming soon</span></div>
   </div>
 </div>
 
@@ -43,8 +48,8 @@
   <dl class="facts">
     <dt>Developer</dt><dd>Little Tide Games (solo developer)</dd>
     <dt>Based in</dt><dd>Seoul, South Korea</dd>
-    <dt>Release</dt><dd>Late 2026 (date to be announced)</dd>
-    <dt>Platforms</dt><dd>iPhone, Android</dd>
+    <dt>Release</dt><dd>October 28, 2026 (iPhone)<br>Android: coming soon</dd>
+    <dt>Platforms</dt><dd>iPhone (<a href="https://apps.apple.com/app/id6819957171">available on the App Store</a>), Android</dd>
     <dt>Price</dt><dd>Free, with ads and optional in-app purchases</dd>
     <dt>Languages</dt><dd>English, Korean, Japanese, German, Spanish, Portuguese, French</dd>
     <dt>Genre</dt><dd>Color sort / boat jam puzzle</dd>
