@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dock Ferry</title>
+<meta name="robots" content="noindex">
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 520px; margin: 0 auto; padding: 32px 16px; line-height: 1.6; color: #1d1d1f; background: #fff; text-align: center; }
+  img.icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+  a.open { display: block; margin: 24px 0 12px; padding: 14px 16px; border-radius: 14px; background: #0a66d8; color: #fff; font-weight: 700; font-size: 1.1rem; text-decoration: none; }
+  p.small { color: #555; font-size: .9rem; }
+</style>
+</head>
+<body>
+<img class="icon" src="../../press/img/icon-1024.jpg" alt="">
+<h1>Dock Ferry</h1>
+<p id="lead">Open the app to jump straight in.</p>
+<a class="open" id="open" href="dockferry://season">Open Dock Ferry</a>
+<p><a href="https://apps.apple.com/app/id6819957171"><img src="../../press/img/app-store-badge.svg" alt="Download on the App Store" style="height:48px"></a></p>
+<p class="small" id="note">Don't have it yet? Get it free on the App Store.</p>
+<script>
+  // 앱이 없거나 1.0.11 전 버전이면 이 페이지가 열린다 — 한국어 기기면 한국어로
+  if ((navigator.language || '').toLowerCase().startsWith('ko')) {
+    document.documentElement.lang = 'ko';
+    document.getElementById('lead').textContent = '앱을 열면 바로 그 화면으로 가요.';
+    document.getElementById('open').textContent = 'Dock Ferry 열기';
+    document.getElementById('note').textContent = '아직 없으세요? 앱스토어에서 무료로 받을 수 있어요.';
+  }
+</script>
+</body>
+</html>
