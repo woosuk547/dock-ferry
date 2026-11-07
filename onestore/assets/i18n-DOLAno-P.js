@@ -1,1 +1,0 @@
-import{a as e,c as t,d as n,f as r,h as i,i as a,l as o,m as s,n as c,o as l,p as u,r as d,s as f,t as p,u as m}from"./i18n-QFFEK7ch.js";export{p as SOURCE_MESSAGES,c as adoptSiteLocale,d as applyDocumentLanguage,a as chooseLang,e as colorLabel,l as festLabel,f as harborLabel,t as itemLabel,o as loadLang,m as num,n as skinLabel,r as stickerLabel,u as t,s as tn,i as uiLang};
