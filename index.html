@@ -12,24 +12,105 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <title>Dock Ferry: Color Sort Puzzle</title>
+<link rel="icon" href="press/img/icon-1024.jpg">
 <style>
-  body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px 16px; line-height: 1.6; color: #1d1d1f; background: #fff; }
+  /* 한 화면 다운로드 랜딩 — 왼쪽 글·배지, 오른쪽 게임 화면 2장. PC는 QR로 폰에 넘김 */
+  :root { --ink:#1d1d1f; --sub:#4a5568; --bg:#fff; --sea:#e9f6f4; --accent:#086456; --line:#d9e2e8; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#e8ebf0; --sub:#aab3c2; --bg:#14171c; --sea:#18252a; --accent:#4fc1b4; --line:#2c343e; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Apple SD Gothic Neo", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+  a { color: var(--accent); }
+  .hero { background: var(--sea); min-height: calc(100vh - 96px); display: flex; align-items: center; }
+  .hero .wrap { width: 100%; }
+  :lang(ko) body, html:lang(ko) { word-break: keep-all; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; box-shadow: 0 6px 18px rgba(0,0,0,.16); }
+  h1 { font-size: 40px; line-height: 1.1; margin: 0; letter-spacing: -.01em; }
+  .by { margin: 4px 0 0; color: var(--sub); font-size: 15px; }
+  .lead { font-size: 19px; margin: 0 0 18px; max-width: 34em; }
+  .points { list-style: none; padding: 0; margin: 0 0 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; font-size: 15px; color: var(--sub); }
+  .points li::before { content: "\2713"; color: var(--accent); font-weight: 700; margin-right: 8px; }
+  .free { font-weight: 600; margin: 0 0 10px; font-size: 15px; }
   /* 스토어 배지: 같은 높이(구글 지침 「애플 배지와 같거나 크게」), 둘레 여백은 높이의 1/4 이상 */
-  .store { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 12px 0; }
-  .store img { height: 48px; width: auto; display: block; }
-  .legal { font-size: 12px; color: #5b6476; }
+  .store { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .store img { height: 52px; width: auto; display: block; }
+  .web { display: inline-block; margin-top: 14px; padding: 10px 0; min-height: 44px; font-size: 16px; font-weight: 600; text-decoration: none; }
+  .web:hover { text-decoration: underline; }
+  .qr { display: flex; align-items: center; gap: 14px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 15px; color: var(--sub); }
+  .qr img { width: 96px; height: 96px; background: #fff; padding: 4px; border-radius: 8px; }
+  .shots { display: flex; gap: 16px; align-items: flex-start; }
+  .shots img { width: 220px; height: auto; border-radius: 26px; box-shadow: 0 12px 32px rgba(10,60,70,.22); display: block; }
+  .shots img + img { margin-top: 48px; }
+  footer { max-width: 1040px; margin: 0 auto; padding: 22px 24px 32px; font-size: 13px; color: var(--sub); }
+  footer p { margin: 4px 0; }
+  .legal { font-size: 12px; }
+  @media (max-width: 820px) {
+    .hero { min-height: 0; }
+    .wrap { grid-template-columns: 1fr; gap: 28px; padding: 28px 20px 32px; }
+    h1 { font-size: 32px; }
+    .icon { width: 80px; height: 80px; border-radius: 18px; }
+    .lead { font-size: 17px; }
+    .points { grid-template-columns: 1fr; }
+    .shots { justify-content: center; }
+    .shots img { width: calc(50% - 8px); max-width: 220px; border-radius: 20px; }
+    .shots img + img { margin-top: 28px; }
+    .qr { display: none; }
+  }
+  /* 폰에선 QR이 쓸모없고, 내 기기 스토어 배지를 앞에 둔다 */
+  .store.android .play { order: -1; }
 </style>
 </head>
 <body>
-<h1>Dock Ferry</h1>
-<p>A relaxing color sorting puzzle by Little Tide Games.</p>
-<div class="store">
-  <a href="https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&ct=site&mt=8"><img src="press/img/app-store-badge.svg" alt="Download on the App Store"></a>
-  <a href="https://play.google.com/store/apps/details?id=com.littletide.dockferry&utm_source=site&utm_campaign=landing&referrer=utm_source%3Dsite%26utm_campaign%3Dlanding"><img src="press/img/google-play-badge.png" alt="Get it on Google Play"></a>
-</div>
-<p><a href="play/" style="display:inline-block;padding:12px 20px;border-radius:12px;background:#0a7d6e;color:#fff;font-weight:600;text-decoration:none">Play in your browser</a></p>
-<p><a href="press/">Press kit</a> · <a href="privacy-policy.html">Privacy Policy</a></p>
-<p>Contact: woosuk547@gmail.com</p>
-<p class="legal">App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="brand">
+        <img class="icon" src="press/img/icon-1024.jpg" alt="Dock Ferry app icon" width="96" height="96">
+        <div>
+          <h1>Dock Ferry</h1>
+          <p class="by" data-ko="색깔 정렬 퍼즐 · Little Tide Games">Color Sort Puzzle · Little Tide Games</p>
+        </div>
+      </div>
+      <p class="lead" data-ko="같은 색 배에 승객을 태우는 퍼즐이에요. 맨 위 대기석은 5칸뿐이라 한 번 누를 때마다 작은 계획이 필요해요.">Tap riders onto the boat of their color. Only five waiting seats, so every tap is a small plan.</p>
+      <ul class="points">
+        <li data-ko="잠깐 쉴 때 하기 좋은 짧은 판">Short levels for quick breaks</li>
+        <li data-ko="모든 판이 풀리는지 직접 검증했어요">Every level checked to be solvable</li>
+        <li data-ko="색을 몰라도 모양 기호로 구분돼요">A symbol on every color, color-blind friendly</li>
+        <li data-ko="오프라인 가능 · 계정 없이 바로 시작">Plays offline, no account needed</li>
+      </ul>
+      <p class="free" data-ko="아이폰·안드로이드 무료">Free on iPhone and Android</p>
+      <div class="store" id="store">
+        <a class="ios" href="https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&ct=site&mt=8"><img src="press/img/app-store-badge.svg" alt="Download on the App Store"></a>
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.littletide.dockferry&utm_source=site&utm_campaign=landing&referrer=utm_source%3Dsite%26utm_campaign%3Dlanding"><img src="press/img/google-play-badge.png" alt="Get it on Google Play"></a>
+      </div>
+      <a class="web" href="play/" data-ko="또는 브라우저에서 바로 해 보기 &rarr;">Or play in your browser &rarr;</a>
+      <div class="qr">
+        <img src="press/img/site-qr.svg" alt="QR code to get Dock Ferry on your phone" width="96" height="96">
+        <span data-ko="폰 카메라로 찍으면 내 폰에 맞는 스토어가 열려요.">Scan with your phone camera to open the right store for your device.</span>
+      </div>
+    </div>
+    <div class="shots">
+      <img id="s1" src="press/img/site-en-1.jpg" alt="Gameplay: tap riders onto the boat of their color" width="480" height="1043">
+      <img id="s2" src="press/img/site-en-2.jpg" alt="Gameplay: one waiting seat left, choose the line" width="480" height="1043">
+    </div>
+  </div>
+</header>
+<footer>
+  <p><a href="press/" data-ko="보도 자료">Press kit</a> · <a href="privacy-policy.html" data-ko="개인정보 처리방침">Privacy Policy</a> · <a href="mailto:woosuk547@gmail.com" data-ko="문의">Contact</a></p>
+  <p class="legal">App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+</footer>
+<script>
+(function () {
+  // 한국어 브라우저면 글·화면 사진을 한국어판으로(검색 엔진·공유 미리보기는 영어 그대로)
+  if (/^ko/i.test(navigator.language || '')) {
+    document.documentElement.lang = 'ko';
+    document.querySelectorAll('[data-ko]').forEach(function (el) { el.innerHTML = el.getAttribute('data-ko'); });
+    document.getElementById('s1').src = 'press/img/site-ko-1.jpg';
+    document.getElementById('s2').src = 'press/img/site-ko-2.jpg';
+  }
+  if (/android/i.test(navigator.userAgent || '')) document.getElementById('store').classList.add('android');
+})();
+</script>
 </body>
 </html>
