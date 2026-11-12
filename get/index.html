@@ -59,7 +59,9 @@
   var pk = new URLSearchParams(location.search).get('p') || '';
   var ppid = Object.prototype.hasOwnProperty.call(PPID, pk) ? PPID[pk] : '';
   var ios = 'https://apps.apple.com/app/apple-store/id6819957171?' + (ppid ? 'ppid=' + ppid + '&' : '') + 'pt=129574356&ct=' + c + '&mt=8';
-  var playQ = 'id=' + PKG + '&utm_source=' + c + '&utm_campaign=get&referrer=' +
+  // 플레이 맞춤 스토어 등록정보(URL 대상) — 같은 표의 이름만 listing 값으로 넘김(콘솔 URL 매개변수와 같은 값)
+  var listing = ppid ? pk : '';
+  var playQ = 'id=' + PKG + (listing ? '&listing=' + listing : '') + '&utm_source=' + c + '&utm_campaign=get&referrer=' +
     encodeURIComponent('utm_source=' + c + '&utm_campaign=get');
   var play = 'https://play.google.com/store/apps/details?' + playQ;
   var ua = navigator.userAgent || '';
