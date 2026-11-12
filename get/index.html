@@ -24,7 +24,11 @@
   .hint { color: var(--sub); font-size: 13px; margin: 8px 0 0; min-height: 1em; }
   .store { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 22px 0 6px; }
   .store img { height: 44px; width: auto; display: block; }
-  .web { display: inline-block; margin-top: 10px; color: var(--accent); font-weight: 600; }
+  .web { display: inline-block; margin-top: 6px; padding: 12px 8px; color: var(--accent); font-weight: 600; }
+  .store.mobile { display: none; }
+  .other { display: inline-block; padding: 12px 8px; color: var(--sub); font-size: 14px; }
+  .other[hidden] { display: none; }
+  @media (min-width: 700px) { .store img { height: 52px; } }
   @media (prefers-color-scheme: dark) { .web { color: #4fc1cf; } }
   .legal { font-size: 11px; color: var(--sub); margin-top: 28px; }
 </style>
@@ -36,6 +40,7 @@
   <p class="sub" id="sub">Free on iPhone and Android</p>
   <a class="go" id="go" href="../" hidden>Open</a>
   <p class="hint" id="hint"></p>
+  <a class="other" id="other" href="#" hidden></a>
   <div class="store">
     <a id="ios" href="https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&amp;ct=get&amp;mt=8"><img src="../press/img/app-store-badge.svg" alt="Download on the App Store"></a>
     <a id="play" href="https://play.google.com/store/apps/details?id=com.littletide.dockferry&amp;utm_source=get&amp;utm_campaign=get"><img src="../press/img/google-play-badge.png" alt="Get it on Google Play"></a>
@@ -84,6 +89,12 @@
   }
   if (isAndroid || isIOS) {
     go.hidden = false;
+    // 폰에선 내 기기 스토어 단추 하나만 크게, 다른 스토어는 작은 글 링크로(배지 줄과 같은 일을 두 번 하지 않게)
+    document.querySelector('.store').classList.add('mobile');
+    var other = document.getElementById('other');
+    other.href = isAndroid ? ios : play;
+    other.textContent = isAndroid ? (ko ? '아이폰이면 App Store' : 'On iPhone? App Store') : (ko ? '안드로이드면 Google Play' : 'On Android? Google Play');
+    other.hidden = false;
     if (!inApp) {
       hint.textContent = ko ? '스토어로 이동하는 중…' : 'Opening the store…';
       setTimeout(function () { location.replace(isAndroid ? play : ios); }, 60);
