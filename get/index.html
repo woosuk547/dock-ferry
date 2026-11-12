@@ -54,7 +54,11 @@
   var raw = new URLSearchParams(location.search).get('c') || 'get';
   var c = /^[a-z0-9_]{1,24}$/.test(raw) ? raw : 'get';
   var PKG = 'com.littletide.dockferry';
-  var ios = 'https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&ct=' + c + '&mt=8';
+  // p = 애플 맞춤 제품 페이지 이름(정해 둔 것만 — 모르는 값은 기본 페이지)
+  var PPID = { colorsort: '56a3e924-32cf-47c2-8468-4ddc795f2859', boatjam: 'c81811bf-97e5-487e-9ed9-ac8260e14e26' };
+  var pk = new URLSearchParams(location.search).get('p') || '';
+  var ppid = Object.prototype.hasOwnProperty.call(PPID, pk) ? PPID[pk] : '';
+  var ios = 'https://apps.apple.com/app/apple-store/id6819957171?' + (ppid ? 'ppid=' + ppid + '&' : '') + 'pt=129574356&ct=' + c + '&mt=8';
   var playQ = 'id=' + PKG + '&utm_source=' + c + '&utm_campaign=get&referrer=' +
     encodeURIComponent('utm_source=' + c + '&utm_campaign=get');
   var play = 'https://play.google.com/store/apps/details?' + playQ;
@@ -63,6 +67,8 @@
   var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   // 앱 안 브라우저: 자동 이동은 사용자 동작이 아니라서 무시됨 → 단추를 눌러야 함
   var inApp = /musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|KAKAOTALK|NAVER\(inapp|Line\//i.test(ua);
+  // 틱톡 앱 안 브라우저는 스토어 열기 자체를 막는 경우가 있어 빠져나가는 길을 적어 둔다
+  var isTikTok = /musical_ly|BytedanceWebview|TikTok/i.test(ua);
   var ko = /^ko/i.test(navigator.language || '');
 
   document.getElementById('ios').href = ios;
@@ -95,6 +101,9 @@
     other.href = isAndroid ? ios : play;
     other.textContent = isAndroid ? (ko ? '아이폰이면 App Store' : 'On iPhone? App Store') : (ko ? '안드로이드면 Google Play' : 'On Android? Google Play');
     other.hidden = false;
+    if (isTikTok) {
+      hint.textContent = ko ? '안 열리면 오른쪽 위 ⋯ → 브라우저에서 열기' : 'Nothing happens? Tap ⋯ (top right) → Open in browser';
+    }
     if (!inApp) {
       hint.textContent = ko ? '스토어로 이동하는 중…' : 'Opening the store…';
       setTimeout(function () { location.replace(isAndroid ? play : ios); }, 60);
