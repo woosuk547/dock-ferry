@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="apple-itunes-app" content="app-id=6819957171">
-<meta name="description" content="Dock Ferry is a free color sort puzzle for iPhone: tap riders onto boats of the same color and keep the five waiting seats from filling up.">
+<meta name="description" content="Dock Ferry is a free color sort puzzle for iPhone and Android: tap riders onto boats of the same color and keep the five waiting seats from filling up.">
 <meta property="og:title" content="Dock Ferry: Color Sort Puzzle">
 <meta property="og:description" content="Tap riders onto boats of the same color. Only five waiting seats, so every tap is a small plan.">
 <meta property="og:image" content="https://woosuk547.github.io/dock-ferry/press/img/feature-1024x500.jpg">
@@ -14,14 +14,22 @@
 <title>Dock Ferry: Color Sort Puzzle</title>
 <style>
   body { font-family: system-ui, sans-serif; max-width: 720px; margin: 0 auto; padding: 24px 16px; line-height: 1.6; color: #1d1d1f; background: #fff; }
+  /* 스토어 배지: 같은 높이(구글 지침 「애플 배지와 같거나 크게」), 둘레 여백은 높이의 1/4 이상 */
+  .store { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 12px 0; }
+  .store img { height: 48px; width: auto; display: block; }
+  .legal { font-size: 12px; color: #5b6476; }
 </style>
 </head>
 <body>
 <h1>Dock Ferry</h1>
 <p>A relaxing color sorting puzzle by Little Tide Games.</p>
-<p><a href="https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&ct=site&mt=8"><img src="press/img/app-store-badge.svg" alt="Download on the App Store" style="height:48px;display:block;margin:12px 0"></a></p>
+<div class="store">
+  <a href="https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&ct=site&mt=8"><img src="press/img/app-store-badge.svg" alt="Download on the App Store"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.littletide.dockferry&utm_source=site&utm_campaign=landing&referrer=utm_source%3Dsite%26utm_campaign%3Dlanding"><img src="press/img/google-play-badge.png" alt="Get it on Google Play"></a>
+</div>
 <p><a href="play/" style="display:inline-block;padding:12px 20px;border-radius:12px;background:#0a7d6e;color:#fff;font-weight:600;text-decoration:none">Play in your browser</a></p>
 <p><a href="press/">Press kit</a> · <a href="privacy-policy.html">Privacy Policy</a></p>
 <p>Contact: woosuk547@gmail.com</p>
+<p class="legal">App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
 </body>
 </html>

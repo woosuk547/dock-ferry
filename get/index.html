@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Get Dock Ferry: Color Sort Puzzle</title>
+<meta name="description" content="Dock Ferry is a free color sort puzzle for iPhone and Android.">
+<meta property="og:title" content="Dock Ferry: Color Sort Puzzle">
+<meta property="og:description" content="Free on iPhone and Android. Tap riders onto boats of the same color.">
+<meta property="og:image" content="https://woosuk547.github.io/dock-ferry/press/img/feature-1024x500.jpg">
+<style>
+  /* 한 주소로 기기별 스토어 보내기 — 틱톡·인스타 앱 안 브라우저는 자동 이동을 막으니 누르는 단추를 늘 보여 준다 */
+  :root { --ink:#1d1d1f; --sub:#4a5568; --bg:#fff; --accent:#0a7d6e; }
+  @media (prefers-color-scheme: dark) { :root { --ink:#e8ebf0; --sub:#aab3c2; --bg:#14171c; --accent:#0a7d6e; } }
+  * { box-sizing: border-box; }
+  body { font-family: system-ui, sans-serif; margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 32px 20px; background: var(--bg); color: var(--ink); line-height: 1.5; text-align: center; }
+  main { max-width: 420px; width: 100%; }
+  .icon { width: 96px; height: 96px; border-radius: 22px; display: block; margin: 0 auto 14px; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .sub { color: var(--sub); margin: 0 0 22px; font-size: 15px; }
+  .go { display: block; width: 100%; padding: 15px 18px; border-radius: 14px; background: var(--accent); color: #fff; font-weight: 700; font-size: 17px; text-decoration: none; }
+  .go[hidden] { display: none; }
+  .hint { color: var(--sub); font-size: 13px; margin: 8px 0 0; min-height: 1em; }
+  .store { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin: 22px 0 6px; }
+  .store img { height: 44px; width: auto; display: block; }
+  .web { display: inline-block; margin-top: 10px; color: var(--accent); font-weight: 600; }
+  @media (prefers-color-scheme: dark) { .web { color: #4fc1cf; } }
+  .legal { font-size: 11px; color: var(--sub); margin-top: 28px; }
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="../press/img/icon-1024.jpg" alt="Dock Ferry app icon" width="96" height="96">
+  <h1>Dock Ferry: Color Sort Puzzle</h1>
+  <p class="sub" id="sub">Free on iPhone and Android</p>
+  <a class="go" id="go" href="../" hidden>Open</a>
+  <p class="hint" id="hint"></p>
+  <div class="store">
+    <a id="ios" href="https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&amp;ct=get&amp;mt=8"><img src="../press/img/app-store-badge.svg" alt="Download on the App Store"></a>
+    <a id="play" href="https://play.google.com/store/apps/details?id=com.littletide.dockferry&amp;utm_source=get&amp;utm_campaign=get"><img src="../press/img/google-play-badge.png" alt="Get it on Google Play"></a>
+  </div>
+  <a class="web" id="web" href="../play/">Play in your browser</a>
+  <p class="legal">App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.</p>
+</main>
+<script>
+(function () {
+  // c = 들어온 곳(애플 ct·플레이 utm_source로 그대로 넘김). 영문 소문자·숫자·밑줄만, 24자까지
+  var raw = new URLSearchParams(location.search).get('c') || 'get';
+  var c = /^[a-z0-9_]{1,24}$/.test(raw) ? raw : 'get';
+  var PKG = 'com.littletide.dockferry';
+  var ios = 'https://apps.apple.com/app/apple-store/id6819957171?pt=129574356&ct=' + c + '&mt=8';
+  var playQ = 'id=' + PKG + '&utm_source=' + c + '&utm_campaign=get&referrer=' +
+    encodeURIComponent('utm_source=' + c + '&utm_campaign=get');
+  var play = 'https://play.google.com/store/apps/details?' + playQ;
+  var ua = navigator.userAgent || '';
+  var isAndroid = /android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  // 앱 안 브라우저: 자동 이동은 사용자 동작이 아니라서 무시됨 → 단추를 눌러야 함
+  var inApp = /musical_ly|BytedanceWebview|TikTok|Instagram|FBAN|FBAV|KAKAOTALK|NAVER\(inapp|Line\//i.test(ua);
+  var ko = /^ko/i.test(navigator.language || '');
+
+  document.getElementById('ios').href = ios;
+  document.getElementById('play').href = play;
+  document.getElementById('web').href = '../play/?utm_source=' + c;
+  if (ko) {
+    document.documentElement.lang = 'ko';
+    document.getElementById('sub').textContent = '아이폰·안드로이드 무료';
+    document.getElementById('web').textContent = '브라우저에서 바로 해 보기';
+  }
+  var go = document.getElementById('go');
+  var hint = document.getElementById('hint');
+  if (isAndroid) {
+    // 안드로이드 앱 안 브라우저는 intent:// 로 플레이 스토어 앱을 연다(안 되면 웹 주소로)
+    go.href = inApp
+      ? 'intent://play.google.com/store/apps/details?' + playQ + '#Intent;scheme=https;package=com.android.vending;S.browser_fallback_url=' + encodeURIComponent(play) + ';end'
+      : play;
+    go.textContent = ko ? 'Google Play에서 받기' : 'Get it on Google Play';
+  } else if (isIOS) {
+    go.href = ios;
+    go.target = '_blank';
+    go.rel = 'noopener';
+    go.textContent = ko ? 'App Store에서 받기' : 'Get it on the App Store';
+  }
+  if (isAndroid || isIOS) {
+    go.hidden = false;
+    if (!inApp) {
+      hint.textContent = ko ? '스토어로 이동하는 중…' : 'Opening the store…';
+      setTimeout(function () { location.replace(isAndroid ? play : ios); }, 60);
+    }
+  }
+})();
+</script>
+</body>
+</html>
