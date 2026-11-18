@@ -1,0 +1,1 @@
+import{n as e}from"./gimmick-book-Cmrfw1jw.js";export{e as openGimmickBook};
